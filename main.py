@@ -5,11 +5,12 @@ from torch import nn
 import json
 from src.data import build_dataloaders
 from train import train
-from evaluate import full_evaluation, print_comparison_table
+from evaluate import full_evaluation
 import os
 import argparse
 from src.utils import visualize_attention
 from src.config import DEFAULT_CFG
+from src.utils import print_comparison_table
 
 def run(model_name: str, cfg: dict):
     device = get_device()
