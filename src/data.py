@@ -30,10 +30,10 @@ def get_transforms(image_size: int = 224, is_train: bool = True):
  
 def build_dataloaders(cfg: dict):
     train_dataset = CIFAR10(
-        root=cfg['data_dir'], train=True,  download=True,
+        root=cfg['data_dir'], train=True,  download=False,
         transform=get_transforms(cfg['image_size'], is_train=True))
     test_dataset  = CIFAR10(
-        root=cfg['data_dir'], train=False, download=True,
+        root=cfg['data_dir'], train=False, download=False,
         transform=get_transforms(cfg['image_size'], is_train=False))
  
     # Split train → 45k train / 5k val
