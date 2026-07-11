@@ -75,7 +75,7 @@ def train(cfg: dict, model_name: str, device: torch.device,
         optimizer,
         max_lr=cfg['lr'],
         total_steps=total_steps,
-        pct_start=max(0.1, warmup_steps / total_steps),
+        pct_start=0.1,
     )
     scaler       = torch.amp.GradScaler('cuda', enabled=cfg['use_amp'])
     early_stop   = EarlyStopping(patience=5)
