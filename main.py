@@ -1,5 +1,5 @@
 from src.setup import get_device
-from src.utils import set_seed
+from src.setup import set_seed
 import torch
 from torch import nn
 import json
