@@ -16,11 +16,10 @@ def build_model(model_name: str, num_classes: int, device: torch.device) -> nn.M
     )
     model = model.to(device)
 
-    # Count parameters
-    total  = sum(p.numel() for p in model.parameters())
+    total = sum(p.numel() for p in model.parameters())
     trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
-    print(f'Model  : {model_name}')
-    print(f'Params : {total/1e6:.1f}M total | {trainable/1e6:.1f}M trainable')
+    print(f"Model  : {model_name}")
+    print(f"Params : {total/1e6:.1f}M total | {trainable/1e6:.1f}M trainable")
     return model
 
 
