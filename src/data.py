@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import torch
 from torch.utils.data import DataLoader, random_split
 from torchvision.datasets import CIFAR10
@@ -35,7 +37,7 @@ def get_transforms(image_size: int = 224, is_train: bool = True):
 
 
 def build_dataloaders(cfg: dict):
-    if not cfg["data_dir"].exists():
+    if not Path(cfg["data_dir"]).exists():
         train_dataset = CIFAR10(
         root=cfg["data_dir"],
         train=True,
