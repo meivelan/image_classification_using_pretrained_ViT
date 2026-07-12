@@ -35,18 +35,32 @@ def get_transforms(image_size: int = 224, is_train: bool = True):
 
 
 def build_dataloaders(cfg: dict):
-    train_dataset = CIFAR10(
+    if not cfg["data_dir"].exists():
+        train_dataset = CIFAR10(
         root=cfg["data_dir"],
         train=True,
-        download=False,
+        download=True,
         transform=get_transforms(cfg["image_size"], is_train=True),
-    )
-    test_dataset = CIFAR10(
-        root=cfg["data_dir"],
-        train=False,
-        download=False,
-        transform=get_transforms(cfg["image_size"], is_train=False),
-    )
+        )
+        test_dataset = CIFAR10(
+            root=cfg["data_dir"],
+            train=False,
+            download=True,
+            transform=get_transforms(cfg["image_size"], is_train=False),
+        )
+    else:
+        train_dataset = CIFAR10(
+            root=cfg["data_dir"],
+            train=True,
+            download=False,
+            transform=get_transforms(cfg["image_size"], is_train=True),
+        )
+        test_dataset = CIFAR10(
+            root=cfg["data_dir"],
+            train=False,
+            download=False,
+            transform=get_transforms(cfg["image_size"], is_train=False),
+        )
 
     n_val = 5000
     n_train = len(train_dataset) - n_val
